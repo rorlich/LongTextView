@@ -21,6 +21,7 @@
 		4B8BF21618CC68F3003DB7EF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B8BF1F818CC68F3003DB7EF /* UIKit.framework */; };
 		4B8BF21E18CC68F3003DB7EF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4B8BF21C18CC68F3003DB7EF /* InfoPlist.strings */; };
 		4B8BF22018CC68F3003DB7EF /* LongTextViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8BF21F18CC68F3003DB7EF /* LongTextViewTests.m */; };
+		4B8BF22F18CC8E1A003DB7EF /* PALongTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8BF22E18CC8E1A003DB7EF /* PALongTextView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,8 @@
 		4B8BF21B18CC68F3003DB7EF /* LongTextViewTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LongTextViewTests-Info.plist"; sourceTree = "<group>"; };
 		4B8BF21D18CC68F3003DB7EF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4B8BF21F18CC68F3003DB7EF /* LongTextViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LongTextViewTests.m; sourceTree = "<group>"; };
+		4B8BF22D18CC8E1A003DB7EF /* PALongTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PALongTextView.h; sourceTree = "<group>"; };
+		4B8BF22E18CC8E1A003DB7EF /* PALongTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PALongTextView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +122,8 @@
 				4B8BF20A18CC68F3003DB7EF /* ViewController.m */,
 				4B8BF20C18CC68F3003DB7EF /* Images.xcassets */,
 				4B8BF1FB18CC68F3003DB7EF /* Supporting Files */,
+				4B8BF22D18CC8E1A003DB7EF /* PALongTextView.h */,
+				4B8BF22E18CC8E1A003DB7EF /* PALongTextView.m */,
 			);
 			path = LongTextView;
 			sourceTree = "<group>";
@@ -252,6 +257,7 @@
 				4B8BF20B18CC68F3003DB7EF /* ViewController.m in Sources */,
 				4B8BF20518CC68F3003DB7EF /* AppDelegate.m in Sources */,
 				4B8BF20118CC68F3003DB7EF /* main.m in Sources */,
+				4B8BF22F18CC8E1A003DB7EF /* PALongTextView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,6 +466,7 @@
 				4B8BF22518CC68F3003DB7EF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4B8BF22618CC68F3003DB7EF /* Build configuration list for PBXNativeTarget "LongTextViewTests" */ = {
 			isa = XCConfigurationList;
@@ -468,6 +475,7 @@
 				4B8BF22818CC68F3003DB7EF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

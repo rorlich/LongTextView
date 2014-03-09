@@ -1,36 +1,81 @@
 //
-//  ViewController.m
+//  PALongTextView.m
 //  LongTextView
 //
 //  Created by Sagi Rorlich on 3/9/14.
 //  Copyright (c) 2014 Sagi Rorlich. All rights reserved.
 //
 
-#import "ViewController.h"
 #import "PALongTextView.h"
 
-@interface ViewController ()
+@interface PALongTextView()
+
+@property (nonatomic,strong) NSArray* sectionViews;
 
 @end
 
-@implementation ViewController
+@implementation PALongTextView
 
-- (void)viewDidLoad
+- (id)initWithFrame:(CGRect)frame
 {
-    [super viewDidLoad];
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self baseInit];
 
-    self.longTextView.text = @"This text, is a very boring text and I bet you will not manage to read the whole text since the only period in the text is the one that ends the whole text that is by the way so long and pointless that writing it is just as fun as the text becomes boring since it is so long and pointless and also quite boring since it does not happen a single thing the whole time it is going on which is very long so you will probably not even manage reading to this point which is somewhere halfway and yet you do incredibly as it is since you are reading these words in this long and boring text where nothing happens at all but you will probably stop reading soon as it is just too boring and long and pointless and I notice you are still reading my boring text and wonder how you can withstand it since it is so long and boring plus there is more fun things to do that I would prefer to do rather than reading this soulless text that is really damn boring and now even I am starting to get tired of it so now I am cutting it out.";
-    
+    }
+    return self;
+}
+
+-(id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if  ( self) {
+        [self baseInit];
+    }
+    return self;
 }
 
 
--(void)viewWillAppear:(BOOL)animated {
-
-   
-    /*
-    NSString* longText = @"This text, is a very boring text and I bet you will not manage to read the whole text since the only period in the text is the one that ends the whole text that is by the way so long and pointless that writing it is just as fun as the text becomes boring since it is so long and pointless and also quite boring since it does not happen a single thing the whole time it is going on which is very long so you will probably not even manage reading to this point which is somewhere halfway and yet you do incredibly as it is since you are reading these words in this long and boring text where nothing happens at all but you will probably stop reading soon as it is just too boring and long and pointless and I notice you are still reading my boring text and wonder how you can withstand it since it is so long and boring plus there is more fun things to do that I would prefer to do rather than reading this soulless text that is really damn boring and now even I am starting to get tired of it so now I am cutting it out.";
+-(void)baseInit {
     
-    NSMutableArray *words = [NSMutableArray arrayWithArray: [longText componentsSeparatedByString:@" "]];
+    CGRect scrollFrame = self.bounds;
+    scrollFrame.size.height -=40;
+    
+    CGRect pageControlFrame = self.bounds;
+    pageControlFrame.size.height = 40;
+    pageControlFrame.origin.y = scrollFrame.origin.y + scrollFrame.size.height;
+    
+    self.scrollView = [[UIScrollView alloc] initWithFrame:scrollFrame];
+    self.scrollView.pagingEnabled = YES;
+    self.scrollView.delegate  = self;
+    
+    self.pageControl = [[UIPageControl alloc] initWithFrame:pageControlFrame];
+    self.pageControl.pageIndicatorTintColor = [UIColor grayColor];
+    self.pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
+    [self addSubview:self.scrollView];
+    [self addSubview:self.pageControl];
+    
+}
+-(void)layoutSubviews {
+    [super layoutSubviews];
+
+}
+
+
+-(void)setText:(NSString *)text {
+    _text = text;
+    [self calculate];
+}
+
+
+-(void)calculate {
+
+    if ( self.sectionViews) {
+        for ( UIView* view in self.sectionViews)
+             [view removeFromSuperview];
+        self.sectionViews = nil;
+    }
+    
+    NSMutableArray *words = [NSMutableArray arrayWithArray: [self.text componentsSeparatedByString:@" "]];
     
     
     
@@ -49,7 +94,7 @@
     int cursur = 0;
     NSMutableArray* texts = [[NSMutableArray alloc] init];
     NSMutableString* section = [[NSMutableString alloc] init];
-
+    
     while ( cursur < words.count) {
         
         // Get next word
@@ -70,20 +115,14 @@
         
     }
     // Add the last part
-        [texts addObject:[section copy] ];
-
+    [texts addObject:[section copy] ];
+    
     
     pages = texts.count;
     
-    
-    
-    // TEST
     NSMutableString* resultString = [[NSMutableString alloc] init];
     for ( NSString* section in texts)
         [resultString appendFormat:@"%@ ",section];
-    
-    int originalLen = longText.length;
-    int len = resultString.length;
     
     
     NSMutableArray* textViews = [NSMutableArray arrayWithCapacity:texts.count];
@@ -112,8 +151,8 @@
         label.backgroundColor = [UIColor blackColor];
         label.textColor = [UIColor whiteColor];
         
-       // int colorIndex = i% colors.count;
-       // label.backgroundColor = [colors objectAtIndex:colorIndex];
+        // int colorIndex = i% colors.count;
+        // label.backgroundColor = [colors objectAtIndex:colorIndex];
         //        UITextView* textView = [[UITextView alloc] initWithFrame:frame];
         //      textView.text = text;
         
@@ -126,7 +165,7 @@
     
     self.pageControl.numberOfPages = texts.count;
     self.pageControl.currentPage = 0;
-    */
+
     
 }
 
@@ -138,4 +177,5 @@
     int page = floor((self.scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
     self.pageControl.currentPage = page;
 }
+
 @end
