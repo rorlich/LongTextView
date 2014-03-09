@@ -136,7 +136,7 @@
         frame.size = self.scrollView.frame.size;
         
         UIView* view = [[UIView alloc] initWithFrame:frame];
-        view.backgroundColor = [UIColor grayColor];
+        //view.backgroundColor = [UIColor grayColor];
         
         
         CGRect labelFrame = self.scrollView.bounds;
@@ -148,8 +148,8 @@
         label.numberOfLines = 100;
         label.text  = text;
         [label sizeToFit];
-        label.backgroundColor = [UIColor blackColor];
-        label.textColor = [UIColor whiteColor];
+        //label.backgroundColor = [UIColor blackColor];
+        //label.textColor = [UIColor whiteColor];
         
         // int colorIndex = i% colors.count;
         // label.backgroundColor = [colors objectAtIndex:colorIndex];
